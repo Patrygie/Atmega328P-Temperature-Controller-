@@ -1,0 +1,22 @@
+1. 	Celem projektu było zaprojektowanie modułu służącego do stabilizacji temperatury dowolnego urządzenia przy pomocy wentylatora na bazie mikrokontrolera ATmega328P w zestawie modułu Arduino Uno Rev3. Połączenia modułu dokonano na płytce stykowej za pomocą przewodów. W projekcie wykorzystano:
+
+•	Arduino Uro Rev3
+•	Wyświetlacz LCD 2x16 + konwerter I2C LCM1602
+•	Pamięć EEPROM 1kb I2C 24AA01
+•	Analogowy czujnik temperatury LM35DZ 
+•	Dwukanałowy moduł sterownika silników L298N
+•	Wentylator 5v 30x30x8mm
+•	Zasilacz AC/DC 12V 800mA
+•	Rezystory: 2x 4,7kΩ, 1x 100Ω
+•	Kondensator ceramiczny 100nF
+•	Tact Switch 6x6mm 2pin
+•	Żółtą diodę LED 5mm
+
+2.	Zasada działania.
+Po włączeniu zasilania układ się włącza co sygnalizowane jest przez migającą żółtą diodę i uruchomiony wyświetlacz. Do poruszania się między trzema stronami wyświetlacza wykorzystuje się przycisk tact switch. 
+Na 1 stronie (SIGNALS) znajduje się aktualna wartość ADC oraz sygnału PWM obliczane na podstawie wartości przekazywanej przez analogowy czujnik termperatury. Na 2 stronie (MEASURES) wyświetlane są informacje o aktualnej wartości temperatury oraz jej maksymalny poziom zanotowany od momentu włączenia urządzenia. Na 3 stronie (EEPROM) wyświetlacz prezentuje adres ADDR w pamięci EEPROM, do którego wysyłana jest wartość najwyższej zanotowanej temperatury (DW) oraz wartość odczytywana z tego samego miejsca pamięci(DR).
+
+3.	Oprogramowanie. 
+Do zaprogramowania modułu zostało wykorzystane dedykowane przez producenta środowisko Arduino IDE 2.0.1. W projekcie wykorzystano biblioteki do obsługi wyświetlacza, opóźnień i obliczeń matematycznych. Reszta została napisana korzystając z bezpośredniego dostępu do rejestrów w języku C według dokumentacji mikrokontrolera.
+Biblioteka I2C_LCD dostępna jest pod adresem: https://github.com/blackhack/LCD_I2C
+Pozostałe biblioteki dostępne są w Arduino IDE.
